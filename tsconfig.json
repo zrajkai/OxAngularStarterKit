@@ -16,7 +16,11 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

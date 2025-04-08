@@ -1,0 +1,8 @@
+{
+    "login": {
+        "title": "Bejelentkezés",
+        "username": "Felhasználónév",
+        "password": "Jelszó",
+        "loginButton": "Bejelentkezés"
+    }
+}

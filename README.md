@@ -1,59 +1,165 @@
-# HoloGraftFront
+# Angular Starter Kit
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+An Angular application that demonstrates best practices.
 
-## Development server
+By Rajkai Zoltán
 
-To start a local development server, run:
+<!-- [![license](https://img.shields.io/github/license/nikosanif/angular-authentication.svg)](https://github.com/nikosanif/angular-authentication/blob/main/LICENSE)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4c9d2c63-d481-486a-996c-8451443ac9d6/deploy-status)](https://angular-authentication.netlify.app)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) -->
 
-```bash
-ng serve
+## Table of Contents
+<!-- 
+- [Live Demo](#live-demo)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [High-level Design](#high-level-design)
+- [Contributing](#contributing)
+- [Support](#support)
+- [License](#license) -->
+
+<!-- ## Live Demo
+
+Live application: [angular-authentication.netlify.app](https://angular-authentication.netlify.app/)
+
+![Angular Authentication Demo](https://raw.githubusercontent.com/nikosanif/angular-authentication/main/meta/app-demo.gif) -->
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/)
+- [Angular CLI](https://angular.io/cli)
+
+### Setup & Local Development
+
+- Clone this repository: `git clone git@github.com:nikosanif/angular-authentication.git`
+- `cd angular-starter-kit`
+- Install dependencies: `npm install`
+- Serve the Angular app: `npm start`
+- Open your browser at: `http://localhost:4200`
+
+### Use it as a Template
+
+The main purpose of this repository is to provide a simple Angular application that demonstrates best practices. The application is configured to use a fake API server (interceptor) that simulates the backend server. 
+
+If you want to use this repository as a template for your project, you can follow these steps:
+
+- Clone this repository
+- Remove fake API:
+  - Delete `src/app/core/fake-api` folder
+  - Remove all references from the `fake-api` folder
+  - Remove the `fakeApiInterceptor` from `app.config.ts`
+
+### Useful Commands
+
+- `npm start` - starts a dev server of Angular app
+- `npm run build:prod` - builds full prod build
+- `npm run lint` - linting source code of this project
+
+## Features
+
+### Authentications & Authorization
+
+- Authentication with JWT
+- Authorization with role management
+- Login with email and password
+- Route Guards
+- Fall-back routes
+- Fragment Guard (directive)
+
+### Other Features
+
+- Zoneless Angular application
+- Standalone Angular components
+- Angular Material UI components
+- Lazy loading of Angular components
+- Responsive design with Tailwind CSS
+- ESLinting
+
+## Tech Stack
+
+- [Angular](https://angular.io/)
+- [Angular Material UI](https://material.angular.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- Other dev tools
+  - ESLint
+
+## High-level Design
+
+Below is the high-level structure of the application.
+
+```sh
+./src
+├── app
+│   ├── app.component.scss
+│   ├── app.component.ts
+│   ├── app.config.ts
+│   ├── app.routes.ts
+│   ├── app.store.ts # configure store based on NgRx or NGXS
+│   │
+│   ├── auth # includes authentication logic
+│   │   ├── auth.routes.ts
+│   │   ├── auth.service.ts
+│   │   ├── index.ts
+│   │   ├── guards
+│   │   ├── interceptors
+│   │   ├── login
+│   │   ├── models
+│   │   ├── tokens
+│   │   └── store     # Choose one of the following
+│   │       ├── ngrx  # store based on NgRx
+│   │       └── ngxs  # store based on NGXS
+│   │
+│   ├── core # includes core utilities
+│   │   ├── fake-api
+│   │   └── services
+│   │
+│   ├── features # all features of application
+│   │   ├── about
+│   │   ├── home
+│   │   └── secured-feat
+│   │
+│   └── shared
+│       ├── ui # UI components
+│       │   ├── avatar
+│       │   ├── footer
+│       │   ├── header
+│       │   └── icon
+│       │
+│       └── util # utility functions
+│
+├── environments # environment configurations
+│
+├── index.html
+├── main.ts
+├── styles.scss
+│
+└── theme # global theme styles
+    ├── _components.scss
+    ├── _material.scss
+    └── index.scss
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+<!-- ## Contributing
 
-## Code scaffolding
+Who is for this? I would love for you to contribute to Angular Authentication! Before you start, please read the [Contributor Guide](https://github.com/nikosanif/angular-authentication/blob/main/CONTRIBUTING.md). -->
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+<!-- If you have found any bug in the source code or want to _request_ a new feature, you can help by [submitting an issue](https://github.com/nikosanif/angular-authentication/issues/new/choose) at GitHub. Even better, you can fork this repository and [submit a PR](https://github.com/nikosanif/angular-authentication/compare) with the fix or the new feature description. -->
 
-```bash
-ng generate component component-name
-```
+## Support
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Star this repository 👆⭐️
 
-```bash
-ng generate --help
-```
+### Author: Rajkai Zoltán 
+inspired by angular-authentication project by Nikos Anifantis ✍️
 
-## Building
+- Fullstack Software Engineer - I’m currently working on Angular & Java application development.
+- I write stuff at [medium.com](https://medium.com/) as blackaillas
 
-To build the project run:
+## License
 
-```bash
-ng build
-```
+Feel free to use this repository, but **please star and put a reference to this repository.** :pray: :heart:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[MIT](https://opensource.org/licenses/MIT)

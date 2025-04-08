@@ -1,0 +1,17 @@
+<main class="login flex justify-center items-center m-auto w-[980px]">
+    <div class="">
+        <h1 class="">{{ 'login.title' | translate }}</h1>
+        <form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="">
+                <label for="username">{{ 'login.username' | translate }}</label>
+                <input type="username" id="username" name="username" formControlName="username" />
+            </div>
+            <div class="">
+                <label for="password">{{ 'login.password' | translate }}</label>
+                <input type="password" id="password" name="password" formControlName="password" />
+            </div>
+            <button type="submit" [disabled]="!form.valid">{{ 'login.loginButton' | translate }}</button>
+        </form>
+    </div>
+
+</main>

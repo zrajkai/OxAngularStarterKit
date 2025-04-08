@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+
+@theme {
+    --font-display: "Inter", "sans-serif";
+    --color-primary: #00f;
+    --color-light-blue: #C5D4F3;
+
+    --animate-countdown: countdown 7s ease-in-out forwards;
+
+    @keyframes countdown {
+        0% {
+            width: 100%;
+        }
+
+        100% {
+            width: 0%;
+        }
+
+    }
+}
+
+@layer base {
+
+    html,
+    body,
+    #hg-root {
+        background-color: white;
+        height: 100%;
+        font-size: 15px;
+        font-family: var(--font-display);
+    }
+}
