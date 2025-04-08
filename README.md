@@ -71,6 +71,8 @@ If you want to use this repository as a template for your project, you can follo
 
 ### Other Features
 
+- Internationalization (i18n) with ngx-translate
+- Input auto focus
 - Zoneless Angular application
 - Standalone Angular components
 - Angular Material UI components

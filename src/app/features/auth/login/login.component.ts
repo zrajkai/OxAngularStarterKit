@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { AuthService } from '../../../../services/auth.service';
+import { AutoFocusDirective } from '../../../directives/auto-focus.directive';
 
 @Component({
     selector: 'hg-login',
-    imports: [ReactiveFormsModule, TranslatePipe],
+    imports: [ReactiveFormsModule, TranslatePipe, AutoFocusDirective],
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
