@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 
-import { Tasks, USERS } from './db.data';
+import { Task, Tasks, USERS } from './db.data';
 
 type RequestHandlers = Record<string, Record<string, () => HttpResponse<unknown>>>;
 
@@ -24,7 +24,7 @@ export class FakeApi {
         };
 
         const { method, url } = this.request;
-        const handler = requestsMapHandlers[method][url];
+        const handler = Object.entries(requestsMapHandlers[method]).find(([key]) => url.includes(key))?.[1];
 
         if (handler) {
             const response = handler();
@@ -113,8 +113,14 @@ export class FakeApi {
         const accessToken = headers.get('Authorization')?.split(' ')[1];
         if (!accessToken) return this.respond400Error('Access token is missing');
 
-        const tasks = this.tasksDB.findAll();
-        if (!tasks) return this.respond400Error('Access token is incorrect');
+        const tasks: Tasks = { items: [], total_count: 0 };
+
+        for (let i = 1; i <= 150; i++) {
+            const element = { id: i, title: 'Task' + i, description: 'Task descriptions ' + i, completed: Math.random() < 0.5 } as Task;
+            tasks.items.push(element);
+        }
+
+        tasks.total_count = tasks.items.length;
 
         return this.respondSuccess(tasks);
     }

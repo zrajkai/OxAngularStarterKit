@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { PageHeaderComponent } from '../../components/page-header/page-header.component';
 
 @Component({
   selector: 'hg-dashboard',
-  imports: [],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  imports: [PageHeaderComponent],
+  templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
 

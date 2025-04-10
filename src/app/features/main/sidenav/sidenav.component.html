@@ -1,6 +1,6 @@
-<nav class="bg-white flex flex-col justify-between items-start w-[250px] h-screen border-r border-light-blue">
+<nav class="bg-white flex flex-col items-start w-[250px] h-screen border-r border-light-blue">
+    <img src="./assets/logo.png" alt="logo" class="w-full mb-16">
     <ul class="flex flex-col gap-2 px-4 w-full">
-        <img src="./assets/icons/logo.png" alt="logo" class="w-48 mt-8 mb-12 m-auto">
         @for (item of items; track $index) {
             <hg-sidenav-item [item]="item" />
         }

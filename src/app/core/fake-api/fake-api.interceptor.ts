@@ -9,7 +9,7 @@ export function fakeApiInterceptor(
 ): Observable<HttpEvent<unknown>> {
     const { method, url, body } = request;
 
-    if (url.includes('i18n')) {
+    if (url.includes('i18n') || url.includes('jsonplaceholder')) {
         return next(request);
     }
 

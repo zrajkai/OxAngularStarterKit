@@ -22,7 +22,6 @@ export function authInterceptor(
     const accessToken = tokenStorageService.getAccessToken();
 
     if (accessToken) {
-        // Add the Authorization header to the request
         req = req.clone({ setHeaders: { Authorization: `Bearer ${accessToken}` } });
     }
 

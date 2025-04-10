@@ -13,5 +13,11 @@ export const environment = {
             accessTokenKey: 'DoPS3ZrQjM',
             refreshTokenKey: 'nmlP8PW2nb',
         },
+        notification: {
+            lifespan: 6000
+        },
+        table: {
+            pageSize: 25
+        }
     },
 }

@@ -20,7 +20,7 @@ export const mainRoutes: Routes = [
                 path: 'feature-one',
                 loadComponent: () => import('../feature-one/feature-one.component').then(c => c.FeatureOneComponent),
                 data: {
-                    permissions: [UserRole.User],
+                    permissions: [UserRole.Admin, UserRole.User],
                 },
                 canActivate: [permissionGuard]
             },
