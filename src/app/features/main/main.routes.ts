@@ -25,6 +25,14 @@ export const mainRoutes: Routes = [
                 canActivate: [permissionGuard]
             },
             {
+                path: 'feature-two',
+                loadComponent: () => import('../feature-two/feature-two.component').then(c => c.FeatureTwoComponent),
+                data: {
+                    permissions: [UserRole.Admin, UserRole.User],
+                },
+                canActivate: [permissionGuard]
+            },
+            {
                 path: 'feature-admin',
                 loadComponent: () => import('../feature-admin/feature-admin.component').then(c => c.FeatureAdminComponent),
                 data: {

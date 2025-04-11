@@ -1,8 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { MatIconModule } from '@angular/material/icon';
-import { timer, Subscription, filter } from "rxjs";
+import { timer, Subscription } from "rxjs";
 import { AlertService } from "../../../services/alert.service";
+
 @Component({
     selector: 'hg-alert',
     imports: [CommonModule, MatIconModule],
@@ -15,15 +16,12 @@ export class AlertComponent implements OnInit, OnDestroy {
     messages = this.alertService.getAlertMessages();
 
     ngOnInit(): void {
-        this.sub$ = timer(1000)
-        .pipe(
-            filter(() => this.alertService.getAlertMessages().length > 0),
-        )
-        .subscribe({
-            next: () => {
-                this.alertService.hideAlerts(this.messages().filter(alert => alert.expiration && alert.expiration < Date.now()).map(alert => alert.id));
-            }
-        });
+        this.sub$ = timer(0, 1000)
+            .subscribe({
+                next: () => {
+                    this.alertService.hideAlerts(this.messages().filter(alert => alert.expiration && alert.expiration < Date.now()).map(alert => alert.id));
+                }
+            });
     }
 
     onEnter(id: string): void {

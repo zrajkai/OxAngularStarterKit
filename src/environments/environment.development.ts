@@ -3,7 +3,7 @@ export const environment = {
     production: false,
     appVersion: '0.0.1',
 
-    apiUrl: '/api',
+    apiUrl: 'https://dummyjson.com',
 
     license: 'full', // TODO: add license check
 

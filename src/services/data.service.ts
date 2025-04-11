@@ -8,6 +8,8 @@ export interface Data {
     details: string;
 }
 
+export const dataKeys: (keyof Data)[] = ['id', 'name', 'details'];
+
 @Injectable()
 export class DataService {
     private apiUrl = 'https://jsonplaceholder.typicode.com/comments';

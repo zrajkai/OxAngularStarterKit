@@ -1,37 +1,79 @@
 import { CommonModule } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
-import { merge, startWith, switchMap, catchError, map, of, debounceTime, distinctUntilChanged, fromEvent, delay, take, } from 'rxjs';
-import { Data, DataService } from '../../../services/data.service';
-import { environment } from '../../../environments/environment';
-import { PageHeaderComponent } from "../../components/page-header/page-header.component";
+import { AfterViewInit, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { TranslatePipe } from '@ngx-translate/core';
+import { map, startWith, switchMap, take, filter, } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { ProductDTO, productKeys, Products, ProductService } from '../../../services/product.service';
+import { PageHeaderComponent } from "../../components/page-header/page-header.component";
+import { AutoFocusDirective } from '../../directives/auto-focus.directive';
 
 @Component({
     selector: 'hg-feature-one',
-    imports: [CommonModule, MatTableModule, MatSortModule, MatIconModule, PageHeaderComponent, ReactiveFormsModule],
-    providers: [DataService],
+    imports: [CommonModule, TranslatePipe, MatTableModule, MatSortModule, MatIconModule, PageHeaderComponent, ReactiveFormsModule, AutoFocusDirective],
+    providers: [ProductService],
     templateUrl: './feature-one.component.html',
     styles: ``
 })
-export class FeatureOneComponent implements OnInit, AfterViewInit {
-    dataSource = signal<Data[]>([]);
-    displayedColumns: string[] = ['id', 'name', 'details'];
-    page = 1;
-    isLoading = false;
-    dataService = inject(DataService);
+export class FeatureOneComponent implements AfterViewInit {
+    @ViewChild(MatSort) sort = new MatSort();
+    @ViewChild('container') elementView: ElementRef = new ElementRef({});
+
+    dataSource = signal<ProductDTO[]>([]);
+    productService = inject(ProductService);
+    triggerLoad = signal(0);
+    trigger$ = toObservable(this.triggerLoad);
+
+    displayedColumns: string[] = productKeys;
+    skip = 0;
+    limit = environment.settings.table.pageSize;
     noMoreRowsToLoad = false;
     lastScrollTop = 0;
-    form: FormGroup = new FormGroup({
+    total = signal<number | null>(null);
+    isLoading = false;
+
+    form = new FormGroup({
         search: new FormControl('')
     });
+    contentHeight: any;
 
-    ngOnInit(): void {
-        this.loadData();
+    ngAfterViewInit(): void {
+        this.sort.sortChange.subscribe(() => (this.skip = 0));
+
+        this.sort.sortChange
+            .pipe(
+                startWith({}),
+                filter(() => !this.isLoading),
+                switchMap(() => {
+                    return this.loadData(true);
+                })
+            )
+            .subscribe(
+                () => {
+                    this.isLoading = false;
+                }
+            );
+
+        this.trigger$
+            .pipe(
+                startWith({}),
+                filter(() => !this.isLoading && !this.noMoreRowsToLoad),
+                switchMap(() => {
+                    return this.loadData();
+                })
+            )
+            .subscribe(
+                () => {
+                    this.isLoading = false;
+                }
+            );
+
+        this.contentHeight = this.elementView.nativeElement.offsetHeight;
+        console.debug('Content height: ', this.contentHeight);
     }
 
     onTableScroll(event: Event): void {
@@ -47,96 +89,41 @@ export class FeatureOneComponent implements OnInit, AfterViewInit {
         this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         const isScrollingDown = diff >= 0;
 
-        if (isScrollingDown && !this.isLoading && scrollHeight - (scrollTop + offsetHeight) < 50) {
-            this.page++;
-            this.loadData();
+        if (isScrollingDown && !this.isLoading && (scrollHeight - (scrollTop + offsetHeight)) < 50) {
+            this.triggerLoad.update((val) => val + 1);
         }
-    }
-
-    // constructor() {
-    //     fromEvent(window, 'scroll')
-    //         .pipe(
-    //             takeUntilDestroyed(),
-    //             debounceTime(100),
-    //             map(() => {
-    //                 const st = window.pageYOffset || document.documentElement.scrollTop;
-    //                 const diff = st - this.lastScrollTop;
-    //                 this.lastScrollTop = st <= 0 ? 0 : st;
-    //                 return diff >= 0 ? 'Down' : 'Up';
-    //             }),
-    //             distinctUntilChanged()
-    //         )
-    //         .subscribe((scrollDirection) => {
-    //             console.log('Scroll Direction:', scrollDirection);
-    //         });
-    // }
-
-    // tasks = signal<Task[]>([]);
-
-
-    ngAfterViewInit(): void {
-        // If the user changes the sort order, reset back to the first page.
-        // this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-        console.log('ngAfterViewInit called');
-        //     //merge(this.sort.sortChange, this.paginator.page)
-        //     merge(this.sort.sortChange)
-        //         .pipe(
-        //             startWith({}),
-        //             switchMap(() => {
-        //                 this.isLoadingResults = true;
-        //                 return this.dataService!.fetchData(
-        //                     this.currentPage,
-        //                     this.pageSize
-        //                 ).pipe(catchError(() => of(null)));
-        //             }),
-        //             map(data => {
-        //                 // Flip flag to show that loading has finished.
-        //                 this.isLoadingResults = false;
-        //                 this.isRateLimitReached = data === null;
-
-        //                 if (data === null) {
-        //                     return [];
-        //                 }
-
-        //                 // Only refresh the result length if there is new data. In case of rate
-        //                 // limit errors, we do not want to reset the paginator to zero, as that
-        //                 // would prevent users from re-triggering requests.
-        //                 this.resultsLength = data.total_count;
-        //                 return data.items;
-        //             }),
-        //         )
-        //         .subscribe(data => (this.data.set(data)));
     }
 
     onSubmit() {
         throw new Error('Method not implemented.');
     }
 
-    onRowClicked(row: Data) {
+    onRowClicked(row: ProductDTO) {
         console.log('Row clicked: ', row);
     }
 
-    private loadData(): void {
-        console.debug('LOAD - ', this.page)
-        this.dataService.fetchData(this.page, environment.settings.table.pageSize)
+    private loadData(resetTable = false) {
+        this.isLoading = true;
+        this.skip += this.limit;
+
+        return this.productService.getProducts(this.sort.active, this.sort.direction, this.skip, this.limit)
             .pipe(
-                delay(3000),
-                take(1)
-            )
-            .subscribe({
-                next: (res: Data[]) => {
-                    if (!res || res.length === 0) {
+                take(1),
+                map((res: Products) => {
+                    if (!res || res.products.length === 0 || res.products.length < res.limit) {
                         this.noMoreRowsToLoad = true;
                     }
 
-                    this.dataSource.update(rows => {
-                        return [...rows, ...res];
-                    });
-                },
-                error: (error: HttpErrorResponse) => {
-                    // TODO: display loading error to user, even within bottom row for loading indication
-                    console.error('Failed to fetch data', error);
-                }
-            });
+                    if (resetTable) {
+                        this.dataSource.set(res.products);
+                    } else {
+                        this.dataSource.update(rows => {
+                            return [...rows, ...res.products];
+                        });
+                    }
+
+                    this.total.set(res.total);
+                })
+            );
     }
 }

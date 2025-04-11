@@ -1,9 +1,11 @@
 {
-  "name": "holo-graft-front",
-  "version": "0.0.0",
+  "name": "my-starter-kit",
+  "version": "0.2.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "ng lint",
     "start": "ng serve",
+    "prebuild": "ng lint",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

@@ -7,11 +7,10 @@ import { AuthService } from '../../../../services/auth.service';
     templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-    public authService = inject(AuthService);
+    authService = inject(AuthService);
 
-    public get username(): string {
+    get username(): string {
         return this.authService.user?.name || '';
     }
 
-    
 }

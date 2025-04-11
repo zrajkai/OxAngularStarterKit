@@ -7,6 +7,7 @@
     --color-grey: #E4E8F5;
     --color-dark-grey: #40424a;
     --color-light-blue: #C5D4F3;
+    --color-mid-blue: #DEE9FF;
     --color-blue: #f8fbff;
 
     --animate-countdown: countdown 7s ease-in-out forwards;
@@ -63,8 +64,11 @@
     input[type="text"],
     input[type="search"],
     input[type="email"],
+    input[type="date"],
     input[type="password"],
-    input[type="number"] {
+    input[type="number"],
+    textarea,
+    select {
         display: block;
         width: 100%;
         border-radius: 10px;

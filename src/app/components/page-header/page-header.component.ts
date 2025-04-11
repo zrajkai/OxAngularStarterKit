@@ -6,5 +6,6 @@ import { Component, input } from '@angular/core';
     templateUrl: './page-header.component.html'
 })
 export class PageHeaderComponent {
-    title = input('Title');
+    title = input<string>('');
+    total = input<number | null>(null);
 }

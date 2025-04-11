@@ -1,7 +1,17 @@
-<div class="flex my-2">
-    <h1 class="text-2xl font-medium text-gray-700 dark:text-white flex-1">
-        {{ title() }}
-    </h1>
+<div class="flex justify-between my-2">
+    <div class="flex justify-items-start gap-x-3">
+        <h1 class="text-2xl font-medium text-gray-700 dark:text-white flex items-center">
+            {{ title() }}
+        </h1>
+
+        @if(total() !== null) {
+        <span
+            class=" flex items-center bg-mid-blue text-primary text-sm font-medium me-2 p-2.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
+            {{ total() }}
+        </span>
+
+        }
+    </div>
 
     <ng-content select="header-actions" />
 </div>
