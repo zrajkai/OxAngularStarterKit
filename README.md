@@ -1,6 +1,6 @@
 # Angular Starter Kit
 
-An Angular application that demonstrates best practices.
+An Angular application for quick start you Enterprise grade web application.
 
 By Rajkai Zoltán
 
@@ -29,8 +29,8 @@ Live application: [angular-authentication.netlify.app](https://angular-authentic
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/)
-- [Angular CLI](https://angular.io/cli)
+- [Node.js](https://nodejs.org)
+- [Angular CLI](https://angular.dev/tools/cli)
 
 ### Setup & Local Development
 
