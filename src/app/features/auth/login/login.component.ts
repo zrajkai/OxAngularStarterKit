@@ -1,8 +1,9 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { take } from 'rxjs/internal/operators/take';
 import { AuthService } from '../../../../services/auth.service';
 import { AutoFocusDirective } from '../../../directives/auto-focus.directive';
 
@@ -17,10 +18,9 @@ interface LoginForm {
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
-    authService = inject(AuthService);
-    router = inject(Router);
-    activatedRoute = inject(ActivatedRoute);
-    fb = inject(FormBuilder);
+    private readonly authService = inject(AuthService);
+    private readonly router = inject(Router);
+    private readonly fb = inject(FormBuilder);
 
     readonly form = new FormGroup<LoginForm>({
         username: new FormControl('', {
@@ -40,18 +40,12 @@ export class LoginComponent {
 
     onSubmit() {
         const { username, password } = this.form.value;
-        this.authService.loginUser(username as string, password as string).subscribe({
-            next: (res) => {
-
-                console.log('LOGIN RES: ', res);
-                this.router.navigateByUrl(
-                    this.activatedRoute.snapshot.queryParams['returnUrl'] || '/'
-                );
-            },
-            error: (err) => {
-                console.error(err);
-            },
-        });
+        this.authService.loginUser(username as string, password as string)
+            .pipe(take(1))
+            .subscribe({
+                next: () => this.router.navigateByUrl('/main'),
+                error: (err) => console.error(err),
+            });
 
     }
 }

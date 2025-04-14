@@ -1,13 +1,14 @@
 import { Injectable, inject } from '@angular/core';
-
 import { ConfigService } from './config.service';
 import { LocalStorageService } from './local-storage.service';
 
+const CLAIM_INDEX = 1;
+const TOKEN_SEP = '.';
 
 @Injectable({ providedIn: 'root' })
 export class TokenStorageService {
     private readonly configService = inject(ConfigService);
-    private readonly sessionStorageService = inject(LocalStorageService);
+    private readonly localStorageService = inject(LocalStorageService);
 
     private readonly accessTokenKey =
         this.configService.getAuthSettings().accessTokenKey || 'accessToken';
@@ -15,19 +16,27 @@ export class TokenStorageService {
         this.configService.getAuthSettings().refreshTokenKey || 'refreshToken';
 
     getAccessToken(): string {
-        return this.sessionStorageService.getItem(this.accessTokenKey) as string;
+        return this.localStorageService.getItem(this.accessTokenKey) as string;
+    }
+
+    getAccessTokenClaims(tokenIn?: string): any {
+        const token = tokenIn ?? this.getAccessToken();
+        if (!token) {
+            return null;
+        }
+        return JSON.parse(window.atob(token.split(TOKEN_SEP)[CLAIM_INDEX]));
     }
 
     saveAccessToken(token: string) {
-        this.sessionStorageService.setItem(this.accessTokenKey, token);
+        this.localStorageService.setItem(this.accessTokenKey, token);
     }
 
     getRefreshToken(): string {
-        return this.sessionStorageService.getItem(this.refreshTokenKey) as string;
+        return this.localStorageService.getItem(this.refreshTokenKey) as string;
     }
 
     saveRefreshToken(token: string) {
-        this.sessionStorageService.setItem(this.refreshTokenKey, token);
+        this.localStorageService.setItem(this.refreshTokenKey, token);
     }
 
     saveTokens(accessToken: string, refreshToken: string) {
@@ -36,7 +45,7 @@ export class TokenStorageService {
     }
 
     removeTokens() {
-        this.sessionStorageService.removeItem(this.accessTokenKey);
-        this.sessionStorageService.removeItem(this.refreshTokenKey);
+        this.localStorageService.removeItem(this.accessTokenKey);
+        this.localStorageService.removeItem(this.refreshTokenKey);
     }
 }

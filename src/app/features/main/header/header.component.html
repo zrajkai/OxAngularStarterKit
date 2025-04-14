@@ -1,5 +1,8 @@
 <header class="w-full border-b border-light-blue bg-white flex justify-end p-4">
-    <div class="flex">
-        {{authService.user?.username}}
+    <div class="flex gap-3">
+        <mat-icon class="text-light-blue cursor-pointer" (click)="logout()">
+            logout
+        </mat-icon>
+        {{authService.authUser()?.username}}
     </div>
 </header>

@@ -85,6 +85,7 @@ If you want to use this repository as a template for your project, you can follo
 - Angular Material UI components
 - Tailwind CSS for styling
 - Internationalization (i18n) with ngx-translate
+  - missing translation handling, lazy loading of translations
 
 ## Tech Stack
 - [Angular](https://angular.io/)

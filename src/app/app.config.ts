@@ -1,13 +1,13 @@
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter } from '@angular/router';
-import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { provideRouter, withDebugTracing } from '@angular/router';
+import { MissingTranslationHandler, TranslateLoader, provideTranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
-import { fakeApiInterceptor } from './core/fake-api';
 import { httpInterceptor } from './interceptors/http.interceptor';
 import { loggingInterceptor } from './interceptors/logging.interceptor';
+import { AppMissingTranslationHandler } from './core/missing.translations';
 
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
@@ -22,18 +22,22 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(
             withInterceptors([
                 httpInterceptor,
-                loggingInterceptor,
-                // ⚠️ FIXME: remove it in real app ⚠️
-                fakeApiInterceptor,
+                loggingInterceptor
             ])
         ),
-        provideRouter(routes), //, withDebugTracing()),
-        importProvidersFrom([TranslateModule.forRoot({
+        provideRouter(routes, withDebugTracing()),
+        provideTranslateService({
             loader: {
                 provide: TranslateLoader,
                 useFactory: httpLoaderFactory,
-                deps: [HttpClient],
+                deps: [HttpClient, AppMissingTranslationHandler],
+
             },
-        })])
+            defaultLanguage: 'en',
+            missingTranslationHandler: {
+                provide: MissingTranslationHandler,
+                useClass: AppMissingTranslationHandler
+            }
+        })
     ]
 };

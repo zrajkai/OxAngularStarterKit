@@ -18,7 +18,7 @@ export class SidenavComponent {
         { title: 'Dashboard' },
         { title: 'Table /w infinite scroll', route: 'feature-one' },
         { title: 'Form with ease', route: 'feature-two' },
-        { title: 'Admin', permissions: [UserRole.Admin] },
+        { title: 'Admin', route: 'feature-admin', permissions: [UserRole.Admin] },
     ]
 }
 

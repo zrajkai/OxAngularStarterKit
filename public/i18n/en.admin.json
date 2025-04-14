@@ -1,0 +1,6 @@
+{
+    "admin": {
+        "title": "Administration",
+        "description": "Lazy loaded translations, CRUD services, and more."
+    }
+}

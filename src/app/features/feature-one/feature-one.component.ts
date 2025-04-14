@@ -39,7 +39,6 @@ export class FeatureOneComponent implements AfterViewInit {
     form = new FormGroup({
         search: new FormControl('')
     });
-    contentHeight: any;
 
     ngAfterViewInit(): void {
         this.sort.sortChange.subscribe(() => (this.skip = 0));
@@ -71,9 +70,6 @@ export class FeatureOneComponent implements AfterViewInit {
                     this.isLoading = false;
                 }
             );
-
-        this.contentHeight = this.elementView.nativeElement.offsetHeight;
-        console.debug('Content height: ', this.contentHeight);
     }
 
     onTableScroll(event: Event): void {

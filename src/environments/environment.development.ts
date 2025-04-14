@@ -9,6 +9,7 @@ export const environment = {
 
     settings: {
         auth: {
+            expirationInMins: 30,
             // keys to store tokens at session storage
             accessTokenKey: 'DoPS3ZrQjM',
             refreshTokenKey: 'nmlP8PW2nb',

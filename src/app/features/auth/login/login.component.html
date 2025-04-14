@@ -9,7 +9,7 @@
             <form [formGroup]="form" class="pt-6 pb-8 mb-4 min-w-96" (ngSubmit)="onSubmit()">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                        {{ 'login.username' | translate }}
+                        {{ 'login.usernameForMyNewAngularApp' | translate }}
                     </label>
                     <input hgAutoFocus
                         class="appearance-none w-full leading-tight focus:outline-none focus:shadow-outline" autocomplete="false"
@@ -17,7 +17,7 @@
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Password
+                        {{ 'login.password' | translate }}
                     </label>
                     <input
                         class="appearance-none w-full mb-3 leading-tight focus:outline-none focus:shadow-outline" autocomplete="false"
@@ -31,7 +31,7 @@
                     <button
                         class="btn btn-primary w-full"
                         type="submit">
-                        Get Started
+                        {{ 'login.loginButton' | translate }}
                     </button>
                 </div>
             </form>

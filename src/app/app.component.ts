@@ -8,6 +8,7 @@ import { AlertComponent } from "./core/alert/alert.component";
 @Component({
     selector: 'hg-root',
     imports: [RouterOutlet, AlertComponent, TranslateModule, ScreenLoaderComponent],
+    providers: [TranslateService],
     templateUrl: './app.component.html',
     animations: [
         trigger('enter', [
@@ -21,7 +22,7 @@ import { AlertComponent } from "./core/alert/alert.component";
 export class AppComponent {
     private readonly translate = inject(TranslateService);
 
-    title = 'Enterprise Angular Starter Kit';
+    title = 'Ox Angular Starter Kit';
 
     constructor() {
         this.translate.addLangs(['en', 'hu']);
