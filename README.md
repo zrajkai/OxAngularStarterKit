@@ -55,7 +55,7 @@ If you want to use this repository as a template for your project, you can follo
 ### Useful Commands
 
 - `npm start` - starts a dev server of Angular app
-- `npm run build:prod` - builds full prod build
+- `npm run build` - builds full prod build
 - `npm run lint` - linting source code of this project
 
 ## Features
@@ -69,24 +69,30 @@ If you want to use this repository as a template for your project, you can follo
 - Fall-back routes
 - Fragment Guard (directive)
 
-### Other Features
-
-- Internationalization (i18n) with ngx-translate
-- Input auto focus
+### Best Practices
 - Zoneless Angular application
 - Standalone Angular components
-- Angular Material UI components
 - Lazy loading of Angular components
-- Responsive design with Tailwind CSS
+- Http Interceptors for centralized authentication, error handling and loading indication.
 - ESLinting
 
-## Tech Stack
+### Utilities
+- Input auto focus
+- Dark mode
 
+
+### Other Features
+- Angular Material UI components
+- Tailwind CSS for styling
+- Internationalization (i18n) with ngx-translate
+
+## Tech Stack
 - [Angular](https://angular.io/)
 - [Angular Material UI](https://material.angular.io/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- Other dev tools
-  - ESLint
+- [RxJs](https://rxjs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [ESLint](https://eslint.org/)
 
 ## High-level Design
 
