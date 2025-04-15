@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AlertService } from '../../../services/alert.service';
 
 @Component({
-    selector: 'hg-no-permission',
+    selector: 'ox-no-permission',
     templateUrl: './no-permission.component.html'
 })
 export class NoPermissionComponent implements OnInit {

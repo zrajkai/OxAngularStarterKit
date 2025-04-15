@@ -9,6 +9,7 @@
     --color-light-blue: #C5D4F3;
     --color-mid-blue: #DEE9FF;
     --color-blue: #f8fbff;
+    --color-red: #e63d0a;
 
     --animate-countdown: countdown 7s ease-in-out forwards;
 
@@ -28,7 +29,8 @@
 
     html,
     body,
-    #hg-root {
+    #ox-root {
+        color: var(--color-dark-grey);
         background-color: var(--color-blue);
         height: 100%;
         font-size: 15px;
@@ -43,6 +45,10 @@
 
     .btn {
         @apply font-medium py-2 px-4 rounded-lg h-11;
+    }
+
+    .btn[disabled] {
+        @apply !bg-gray-400 text-white cursor-not-allowed;
     }
 
     .btn-primary {
@@ -61,6 +67,16 @@
         @apply bg-slate-400;
     }
 
+    /* form field */
+
+    label {
+        @apply block text-base font-bold mb-1;
+    }
+
+    .field:has(.ng-invalid:not(form):not(.ng-pristine)) {
+        color: var(--color-red);
+    }
+
     input[type="text"],
     input[type="search"],
     input[type="email"],
@@ -77,6 +93,23 @@
         height: 46px;
         background-color: var(--color-white);
         color: var(--color-dark-grey);
+    }
+
+    .ng-invalid:not(form):not(.ng-pristine) {
+        color: var(--color-red);
+        border-left: 5px solid var(--color-red);
+        border-right: 5px solid var(--color-red);
+    }
+
+    .ng-invalid:not(form):not(.ng-pristine) + p.error {
+        visibility: visible;
+    }
+
+    .field input + p.error {
+        padding-left: 5px;
+        font-size: 0.8rem;
+        visibility: hidden;
+        text-align: end;
     }
 
 }

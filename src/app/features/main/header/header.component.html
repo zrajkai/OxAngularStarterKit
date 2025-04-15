@@ -1,8 +1,27 @@
-<header class="w-full border-b border-light-blue bg-white flex justify-end p-4">
-    <div class="flex gap-3">
-        <mat-icon class="text-light-blue cursor-pointer" (click)="logout()">
-            logout
-        </mat-icon>
+<header class="w-full border-b border-light-blue bg-white flex justify-between p-4">
+    <div id="header-search" class="relative flex w-full justify-center">
+        <div class="w-30 focus-visible:w-100 transition-all duration-300">
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                </div>
+                <input oxAutoFocus type="search" id="head-search" class="ps-10" placeholder="Ctrl + K" />
+                @if(searchModalShown) {
+                <div
+                    class="absolute top-20 start-[-50px] w-80 h-20 overflow-y-scroll bg-white z-110 border border-light-blue shadow-lg rounded-lg">
+                    Well, this function will need to be implemented by you.
+                    <!-- <ox-search-modal></ox-search-modal> -->
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-end gap-3">
+        <mat-icon class="text-light-blue cursor-pointer" (click)="logout()">logout</mat-icon>
         {{authService.authUser()?.username}}
     </div>
 </header>

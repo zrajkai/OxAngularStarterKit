@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
-    selector: 'hg-spinner',
+    selector: 'ox-spinner',
     imports: [CommonModule],
     template: `
     <div role="status">

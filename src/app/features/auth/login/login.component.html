@@ -1,43 +1,33 @@
 <div class="flex flex-col justify-center items-center h-screen ">
     <main class="login flex justify-center items-center m-auto w-[1512px]">
-        <div class="w-1/2 h-full flex justify-center items-center">
-            <img ngSrc="./assets/promo.png" alt="promo" class="mb-4 object-cover rounded-4xl" width="746" height="920" [priority]="true" />
+        <div class="w-1/2 flex justify-center items-center">
+            <img ngSrc="./assets/promo3_large.png" alt="promo" class="mb-4 object-cover rounded-4xl" width="670" height="670"
+                [priority]="true" />
         </div>
         <div class="w-1/2 flex flex-col justify-center items-center h-full p-5">
-            <h1 class="text-3xl font-bold mb-2 mt-20">Welcome to my Starter Kit</h1>
-            <h2 class="text-lg mb-4">Your gateway for a faster application development</h2>
+            <h1 class="text-3xl font-bold mb-2 mt-20">{{ 'login.welcome' | translate }}</h1>
+            <h2 class="text-lg mb-4">{{ 'login.slogan' | translate }}</h2>
             <form [formGroup]="form" class="pt-6 pb-8 mb-4 min-w-96" (ngSubmit)="onSubmit()">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                        {{ 'login.usernameForMyNewAngularApp' | translate }}
-                    </label>
-                    <input hgAutoFocus
-                        class="appearance-none w-full leading-tight focus:outline-none focus:shadow-outline" autocomplete="false"
-                        id="username" type="text" placeholder="Username" formControlName="username">
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        {{ 'login.password' | translate }}
-                    </label>
-                    <input
-                        class="appearance-none w-full mb-3 leading-tight focus:outline-none focus:shadow-outline" autocomplete="false"
-                        id="password" type="password" placeholder="Password" formControlName="password">
-                    <!-- <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
-                    <a class=" flex justify-end align-baseline text-end text-sm"  href="#" tabindex="-1">
-                        Forgot Password?
-                    </a>
-                </div>
-                <div class="flex items-center justify-between">
-                    <button
-                        class="btn btn-primary w-full"
-                        type="submit">
+                <ox-input [fieldKey]="'username'">
+                    <input oxAutoFocus autocomplete="false" id="username" type="text" [placeholder]="'login.username' | translate"
+                        formControlName="username">
+                    <p class="error">{{getError('username') | translate }}</p>
+                </ox-input>
+                <ox-input [fieldKey]="'password'">
+                    <input autocomplete="false" id="password" type="password" [placeholder]="'login.password' | translate"
+                        formControlName="password">
+                        <p class="error">{{getError('username') | translate }}</p>
+                </ox-input>
+
+                <div class="flex items-center justify-between mt-5">
+                    <button class="btn btn-primary w-full" type="submit" [disabled]="form.invalid">
                         {{ 'login.loginButton' | translate }}
                     </button>
                 </div>
             </form>
-            <p class="text-center text-gray-500 text-xs">
-                &copy;2025. All rights reserved.
-            </p>
+            <a class="text-center text-gray-500 text-xs hover:text-black" tabindex="-1">
+                {{ 'login.forgot' | translate }}
+            </a>
         </div>
 
     </main>

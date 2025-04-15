@@ -4,7 +4,7 @@ import { HeaderComponent } from "./header/header.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
 
 @Component({
-    selector: 'hg-main',
+    selector: 'ox-main',
     imports: [RouterOutlet, SidenavComponent, HeaderComponent],
     templateUrl: './main.component.html'
 })

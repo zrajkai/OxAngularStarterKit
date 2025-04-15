@@ -6,14 +6,14 @@ import { ScreenLoaderComponent } from "./components/screen-loader/screen-loader.
 import { AlertComponent } from "./core/alert/alert.component";
 
 @Component({
-    selector: 'hg-root',
+    selector: 'ox-root',
     imports: [RouterOutlet, AlertComponent, TranslateModule, ScreenLoaderComponent],
     providers: [TranslateService],
     templateUrl: './app.component.html',
     animations: [
         trigger('enter', [
             transition(':enter', [
-                style({ opacity: 0, scale: 0.7 }),
+                style({ opacity: 0, scale: 0.9 }),
                 animate('400ms ease-in', style({ opacity: 1, scale: 1 }))
             ])
         ])

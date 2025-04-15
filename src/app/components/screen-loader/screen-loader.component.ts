@@ -3,10 +3,9 @@ import { LoaderService } from '../../../services/loader.service';
 import { SpinnerComponent } from '../../bits/spinner.bit';
 
 @Component({
-    selector: 'hg-screen-loader',
+    selector: 'ox-screen-loader',
     imports: [SpinnerComponent],
-    templateUrl: './screen-loader.component.html',
-    styles: ``
+    templateUrl: './screen-loader.component.html'
 })
 export class ScreenLoaderComponent {
     loaderService = inject(LoaderService);

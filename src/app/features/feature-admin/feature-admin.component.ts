@@ -8,7 +8,7 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
     new TranslateHttpLoader(http, './i18n/', '.json');
 
 @Component({
-    selector: 'hg-feature-admin',
+    selector: 'ox-feature-admin',
     imports: [TranslatePipe, PageHeaderComponent],
     templateUrl: './feature-admin.component.html'
 })

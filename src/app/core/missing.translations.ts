@@ -1,5 +1,5 @@
-import { MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
 import { Injectable } from "@angular/core";
+import { MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
 
 @Injectable({

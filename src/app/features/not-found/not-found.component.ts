@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'hg-not-found',
+  selector: 'ox-not-found',
   imports: [],
   templateUrl: './not-found.component.html'
 })

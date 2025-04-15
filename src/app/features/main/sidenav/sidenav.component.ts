@@ -9,7 +9,7 @@ interface SidenavItem {
 }
 
 @Component({
-    selector: 'hg-sidenav',
+    selector: 'ox-sidenav',
     imports: [forwardRef(() => SidenavItemComponent),],
     templateUrl: './sidenav.component.html'
 })
@@ -23,7 +23,7 @@ export class SidenavComponent {
 }
 
 @Component({
-    selector: 'hg-sidenav-item',
+    selector: 'ox-sidenav-item',
     imports: [RouterLink, RouterLinkActive],
     template: `
     @if(item() !== undefined) {

@@ -5,7 +5,7 @@ import { timer, Subscription } from "rxjs";
 import { AlertService } from "../../../services/alert.service";
 
 @Component({
-    selector: 'hg-alert',
+    selector: 'ox-alert',
     imports: [CommonModule, MatIconModule],
     templateUrl: './alert.component.html',
 })

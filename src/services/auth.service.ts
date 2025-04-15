@@ -3,12 +3,12 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Temporal } from '@js-temporal/polyfill';
 import { Observable } from 'rxjs/internal/Observable';
-import { tap } from 'rxjs/internal/operators/tap';
 import { of } from 'rxjs/internal/observable/of';
+import { tap } from 'rxjs/internal/operators/tap';
+import { AuthR, User } from '../app/core/models/auth.models';
+import { environment } from '../environments/environment';
 import { ConfigService } from './config.service';
 import { TokenStorageService } from './token.storage.service';
-import { environment } from '../environments/environment';
-import { AuthR, User } from '../app/core/models/auth.models';
 
 
 @Injectable({
@@ -54,17 +54,19 @@ export class AuthService {
 
     isLoggedIn$(): Observable<boolean> {
         this.authToken = this.tokenStorageService.getAccessToken();
-        if (!!this.authToken) {
-            const authData: User = this.tokenStorageService.getAccessTokenClaims();
-            this.checkSessionExpiry(authData);
-            this.authUser.set({
-                id: authData.id,
-                name: authData.name,
-                username: authData.username,
-                email: authData.email,
-                role: 'admin', // FIXME: get role from server,
-                exp: authData.exp
-            });
+        if (this.authToken) {
+            const authData: User | null = this.tokenStorageService.getAccessTokenClaims();
+            if (authData) {
+                this.checkSessionExpiry(authData);
+                this.authUser.set({
+                    id: authData.id,
+                    name: authData.name,
+                    username: authData.username,
+                    email: authData.email,
+                    role: 'admin', // FIXME: get role from server,
+                    exp: authData.exp
+                });
+            }
         }
         return of(!!this.authToken);
     }
@@ -85,7 +87,7 @@ export class AuthService {
                 username: authData.username,
                 email: authData.email,
                 role: 'admin', // FIXME: get role from server,
-                exp: claims.exp
+                exp: claims?.exp || 0
             };
             this.authUser.set(data);
             this.tokenStorageService.saveAccessToken(authData.accessToken);

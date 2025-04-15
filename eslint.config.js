@@ -22,7 +22,7 @@ module.exports = tseslint.config(
                 'error',
                 {
                     type: 'attribute',
-                    prefix: 'hg',
+                    prefix: 'ox',
                     style: 'camelCase',
                 },
             ],
@@ -30,7 +30,7 @@ module.exports = tseslint.config(
                 'error',
                 {
                     type: 'element',
-                    prefix: 'hg',
+                    prefix: 'ox',
                     style: 'kebab-case',
                 },
             ],

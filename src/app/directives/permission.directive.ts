@@ -2,7 +2,7 @@ import { Directive, TemplateRef, ViewContainerRef, OnInit, Input } from '@angula
 import { AuthService } from '../../services/auth.service';
 
 @Directive({
-    selector: '[hgHasPermissions]',
+    selector: '[oxHasPermissions]',
     standalone: true,
 })
 export class HasPermissionsDirective implements OnInit {
@@ -10,7 +10,7 @@ export class HasPermissionsDirective implements OnInit {
     private permissions: string[] = [];
 
     @Input()
-    set hgHasPermissions(permissions: string[]) {
+    set oxHasPermissions(permissions: string[]) {
         this.permissions = permissions;
     }
 

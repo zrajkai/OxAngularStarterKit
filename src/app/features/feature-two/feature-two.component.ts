@@ -6,7 +6,7 @@ import { PageHeaderComponent } from '../../components/page-header/page-header.co
 import { Genders } from '../../shared/constants/gender.const';
 
 @Component({
-    selector: 'hg-feature-two',
+    selector: 'ox-feature-two',
     imports: [PageHeaderComponent, ReactiveFormsModule, CardComponent],
     providers: [ProductService],
     templateUrl: './feature-two.component.html'

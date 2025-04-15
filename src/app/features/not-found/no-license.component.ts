@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'hg-no-license',
+  selector: 'ox-no-license',
   imports: [],
   templateUrl: './no-license.component.html',
   styles: ``

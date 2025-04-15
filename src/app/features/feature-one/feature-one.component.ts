@@ -13,7 +13,7 @@ import { PageHeaderComponent } from "../../components/page-header/page-header.co
 import { AutoFocusDirective } from '../../directives/auto-focus.directive';
 
 @Component({
-    selector: 'hg-feature-one',
+    selector: 'ox-feature-one',
     imports: [CommonModule, TranslatePipe, MatTableModule, MatSortModule, MatIconModule, PageHeaderComponent, ReactiveFormsModule, AutoFocusDirective],
     providers: [ProductService],
     templateUrl: './feature-one.component.html',

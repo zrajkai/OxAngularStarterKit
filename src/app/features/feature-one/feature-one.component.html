@@ -1,9 +1,9 @@
-<hg-page-header [title]="'Table feature with Infinite scroll'" [total]="total()">
+<ox-page-header [title]="'Table feature with Infinite scroll'" [total]="total()">
     <div ngProjectAs="header-actions" class="flex gap-x-2">
         <button class="btn btn-primary">Add new Item</button>
         <button class="btn btn-secondary">Advanced Filters</button>
     </div>
-</hg-page-header>
+</ox-page-header>
 
 <div class="flex gap-2">
     <form class="w-full max-w-lg" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -17,7 +17,7 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input hgAutoFocus type="search" id="default-search" class=" ps-10" placeholder="Search for items" />
+                    <input oxAutoFocus type="search" id="default-search" class=" ps-10" placeholder="Search for items" />
                 </div>
             </div>
             <div class="w-full md:w-1/2 px-3">

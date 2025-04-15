@@ -1,4 +1,5 @@
 import { Injectable, inject } from '@angular/core';
+import { User } from '../app/core/models/auth.models';
 import { ConfigService } from './config.service';
 import { LocalStorageService } from './local-storage.service';
 
@@ -19,7 +20,7 @@ export class TokenStorageService {
         return this.localStorageService.getItem(this.accessTokenKey) as string;
     }
 
-    getAccessTokenClaims(tokenIn?: string): any {
+    getAccessTokenClaims(tokenIn?: string): User | null {
         const token = tokenIn ?? this.getAccessToken();
         if (!token) {
             return null;

@@ -4,5 +4,19 @@
         "username": "Felhasználónév",
         "password": "Jelszó",
         "loginButton": "Bejelentkezés"
+    },
+    "error": {
+        "ui": {
+            "required": "Required",
+            "Minlength": "Min length not met"
+        },
+        "api": {
+            "INVALID_CREDENTIALS": "Invalid credentials.",
+            "INVALID_TOKEN": "Invalid token.",
+            "EXPIRED_TOKEN": "Expired token.",
+            "UNAUTHORIZED": "Unauthorized.",
+            "RECORD_NOT_FOUND": "Record not found.",
+            "UNHANDLED_EX": "The application ran into an unknown issues. Please contact your System Administrator and give them this code: {{code}}. Sorry for the inconvenience."
+        }
     }
 }

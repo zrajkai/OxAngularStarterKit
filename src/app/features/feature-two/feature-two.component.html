@@ -1,10 +1,10 @@
-<hg-page-header [title]="'Form with ease'">
+<ox-page-header [title]="'Form with ease'">
     <div ngProjectAs="header-actions" class="flex gap-x-2">
         <input type="submit" class="btn btn-primary" value="Submit" (click)="onSubmit()" />
     </div>
-</hg-page-header>
+</ox-page-header>
 
-<hg-card>
+<ox-card>
     <div class="flex gap-2">
         <form class="w-full" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="grid grid-cols-3 gap-3">
@@ -53,4 +53,4 @@
             </div>
         </form>
     </div>
-</hg-card>
+</ox-card>
