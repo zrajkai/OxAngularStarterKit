@@ -36,14 +36,6 @@ module.exports = tseslint.config(
             ],
 
             // Import rules
-            'import/order': [
-                'error',
-                {
-                    alphabetize: {
-                        order: 'asc',
-                    },
-                },
-            ],
             'import/first': ['error'],
             'import/no-duplicates': ['error'],
 

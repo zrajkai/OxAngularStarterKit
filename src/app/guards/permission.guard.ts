@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, createUrlTreeFromSnapshot } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 export const permissionGuard = (route: ActivatedRouteSnapshot) => {
     const authService = inject(AuthService);

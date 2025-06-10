@@ -10,7 +10,7 @@ export class AppMissingTranslationHandler implements MissingTranslationHandler {
         const { key } = params;
         const keyAsArray = key.split('.');
         const lastItem = keyAsArray[keyAsArray.length - 1];
-        const wordsOfLastItem = this.getWordsWithUpperCase(lastItem);
+        const wordsOfLastItem = this.getWordsWithUpperCase(lastItem!);
         const prefix = environment.production ? '' : 'MISS__';
         return prefix + wordsOfLastItem.join(' ') || key;
     }

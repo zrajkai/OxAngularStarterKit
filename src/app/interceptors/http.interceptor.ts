@@ -3,9 +3,9 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { EMPTY, Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { AuthService } from '../../services/auth.service';
-import { LoaderService } from '../../services/loader.service';
-import { TokenStorageService } from '../../services/token.storage.service';
+import { AuthService } from '../services/auth.service';
+import { LoaderService } from '../services/loader.service';
+import { TokenStorageService } from '../services/token.storage.service';
 
 export function httpInterceptor(
     req: HttpRequest<unknown>,

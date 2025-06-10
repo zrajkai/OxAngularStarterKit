@@ -21,3 +21,7 @@ export interface User extends UserClaims {
 export interface UserClaims {
     exp: number;
 }
+
+export const userKeys: (keyof User)[] = [
+    'id', 'name', 'username', 'email', 'role'
+];

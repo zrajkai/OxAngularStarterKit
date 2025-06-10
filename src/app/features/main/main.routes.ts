@@ -38,7 +38,13 @@ export const mainRoutes: Routes = [
                 data: {
                     permissions: [UserRole.Admin, UserRole.User],
                 },
-                canActivate: [permissionGuard]
+                canActivate: [permissionGuard],
+                children: [
+                    {
+                        path: ':key',
+                        loadComponent: () => import('../feature-admin/crud-list/crud-list.component').then(c => c.CrudListComponent)
+                    }
+                ]
             }
         ]
     },

@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { PageHeaderComponent } from "../../components/page-header/page-header.component";
+import { PageHeaderComponent } from "@components/page-header/page-header.component";
+import { CardComponent } from "@components/card/card.component";
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
     new TranslateHttpLoader(http, './i18n/', '.json');
 
 @Component({
     selector: 'ox-feature-admin',
-    imports: [TranslatePipe, PageHeaderComponent],
+    imports: [TranslatePipe, PageHeaderComponent, CardComponent, RouterModule],
     templateUrl: './feature-admin.component.html'
 })
 export class FeatureAdminComponent {

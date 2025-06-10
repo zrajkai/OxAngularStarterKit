@@ -47,10 +47,8 @@ The main purpose of this repository is to provide a simple Angular application t
 If you want to use this repository as a template for your project, you can follow these steps:
 
 - Clone this repository
-- Remove fake API:
-  - Delete `src/app/core/fake-api` folder
-  - Remove all references from the `fake-api` folder
-  - Remove the `fakeApiInterceptor` from `app.config.ts`
+- Remove DummaJson dependecies:
+- Update FIXMEs in the codebase  
 
 ### Useful Commands
 
@@ -78,7 +76,6 @@ If you want to use this repository as a template for your project, you can follo
 
 ### Utilities
 - Input auto focus
-- Dark mode
 
 
 ### Other Features
@@ -94,62 +91,6 @@ If you want to use this repository as a template for your project, you can follo
 - [RxJs](https://rxjs.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [ESLint](https://eslint.org/)
-
-## High-level Design
-
-Below is the high-level structure of the application.
-
-```sh
-./src
-├── app
-│   ├── app.component.scss
-│   ├── app.component.ts
-│   ├── app.config.ts
-│   ├── app.routes.ts
-│   ├── app.store.ts # configure store based on NgRx or NGXS
-│   │
-│   ├── auth # includes authentication logic
-│   │   ├── auth.routes.ts
-│   │   ├── auth.service.ts
-│   │   ├── index.ts
-│   │   ├── guards
-│   │   ├── interceptors
-│   │   ├── login
-│   │   ├── models
-│   │   ├── tokens
-│   │   └── store     # Choose one of the following
-│   │       ├── ngrx  # store based on NgRx
-│   │       └── ngxs  # store based on NGXS
-│   │
-│   ├── core # includes core utilities
-│   │   ├── fake-api
-│   │   └── services
-│   │
-│   ├── features # all features of application
-│   │   ├── about
-│   │   ├── home
-│   │   └── secured-feat
-│   │
-│   └── shared
-│       ├── ui # UI components
-│       │   ├── avatar
-│       │   ├── footer
-│       │   ├── header
-│       │   └── icon
-│       │
-│       └── util # utility functions
-│
-├── environments # environment configurations
-│
-├── index.html
-├── main.ts
-├── styles.scss
-│
-└── theme # global theme styles
-    ├── _components.scss
-    ├── _material.scss
-    └── index.scss
-```
 
 <!-- ## Contributing
 

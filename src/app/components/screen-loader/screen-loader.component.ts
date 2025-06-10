@@ -1,5 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { LoaderService } from '../../../services/loader.service';
+import { LoaderService } from '../../services/loader.service';
 import { SpinnerComponent } from '../../bits/spinner.bit';
 
 @Component({

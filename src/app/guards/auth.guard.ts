@@ -5,7 +5,7 @@ import {
     createUrlTreeFromSnapshot,
 } from '@angular/router';
 import { map, take } from 'rxjs/operators';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 
 export const authGuard = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {

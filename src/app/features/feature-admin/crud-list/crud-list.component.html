@@ -1,0 +1,10 @@
+<ox-page-header [title]="'Using a generic CRUD service for simple tables'">
+    <div ngProjectAs="header-actions" class="flex gap-x-2">
+        <button class="btn btn-primary" (click)="onAdd()">Add new Item</button>
+        <button class="btn btn-secondary">Advanced Filters</button>
+    </div>
+</ox-page-header>
+
+<ox-table />
+
+<ng-template #dynamicComponentContainer />

@@ -1,35 +1,37 @@
-import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { AfterViewInit, Component, ElementRef, inject, signal, ViewChild } from "@angular/core";
 import { MatIconModule } from '@angular/material/icon';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
-import { TranslatePipe } from '@ngx-translate/core';
-import { map, startWith, switchMap, take, filter, } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { PageHeaderComponent } from "../../components/page-header/page-header.component";
-import { AutoFocusDirective } from '../../directives/auto-focus.directive';
-import { CrudService } from '@app/services/crud.service';
-import { ProductDTO, Products } from '@app/core/models/product.models';
+import { environment } from "@env/environment";
+import { toObservable } from "@angular/core/rxjs-interop";
+import { MatSort, MatSortModule } from "@angular/material/sort";
+import { startWith } from "rxjs/internal/operators/startWith";
+import { filter } from "rxjs/internal/operators/filter";
+import { switchMap } from "rxjs/internal/operators/switchMap";
+import { Base, Paginated } from "../models/base.models";
+import { take } from "rxjs/internal/operators/take";
+import { map } from "rxjs/internal/operators/map";
+import { MatTableModule } from "@angular/material/table";
+import { TranslatePipe } from "@ngx-translate/core";
+import { CrudService } from "@app/services/crud.service";
+import { merge } from "rxjs";
+
 
 @Component({
-    selector: 'ox-feature-one',
-    imports: [CommonModule, TranslatePipe, MatTableModule, MatSortModule, MatIconModule, PageHeaderComponent, ReactiveFormsModule, AutoFocusDirective],
-    providers: [CrudService],
-    templateUrl: './feature-one.component.html',
-    styles: ``
+    selector: 'ox-table',
+    imports: [CommonModule, MatIconModule, MatTableModule, MatSortModule, TranslatePipe],
+    templateUrl: './table.component.html',
 })
-export class FeatureOneComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit {
     @ViewChild(MatSort) sort = new MatSort();
     @ViewChild('container') elementView: ElementRef = new ElementRef({});
 
-    dataSource = signal<ProductDTO[]>([]);
-    productService = inject(CrudService);
+    service = inject(CrudService<Paginated, Base>);
+
+    dataSource = signal<Base[]>([]);
     triggerLoad = signal(0);
     trigger$ = toObservable(this.triggerLoad);
+    newModelKey$ = toObservable(this.service.modelKey);
 
-    displayedColumns: string[] = this.productService.keys();
     skip = 0;
     limit = environment.settings.table.pageSize;
     noMoreRowsToLoad = false;
@@ -37,14 +39,10 @@ export class FeatureOneComponent implements AfterViewInit {
     total = signal<number | null>(null);
     isLoading = false;
 
-    form = new FormGroup({
-        search: new FormControl('')
-    });
-
     ngAfterViewInit(): void {
         this.sort.sortChange.subscribe(() => (this.skip = 0));
 
-        this.sort.sortChange
+        merge(this.sort.sortChange, this.newModelKey$)
             .pipe(
                 startWith({}),
                 filter(() => !this.isLoading),
@@ -95,27 +93,46 @@ export class FeatureOneComponent implements AfterViewInit {
         throw new Error('Method not implemented.');
     }
 
-    onRowClicked(row: ProductDTO) {
+    onRowClicked(row: Base) {
         console.log('Row clicked: ', row);
     }
 
-    private loadData(resetTable = false) {
-        this.isLoading = true;
-        this.skip += this.limit;
+    onDelete(row: Base) {
+        this.service.delete(row.id)
+        .pipe(take(1))
+        .subscribe(() => {
+            this.triggerLoad.update((val) => val + 1);
+        });
+    }
 
-        return this.productService.getAll(this.sort.active, this.sort.direction, this.skip, this.limit)
+    protected loadData(resetTable = false) {
+        this.isLoading = true;
+
+        if (resetTable) {
+            this.skip = 0;
+            this.dataSource.set([]);
+            this.total.set(null);
+            this.sort.active = 'id';
+            this.sort.direction = 'desc';
+            this.noMoreRowsToLoad = false;
+        } else {
+            this.skip += this.limit;
+        }
+
+        return this.service!.getAll(this.sort.active, this.sort.direction, this.skip, this.limit)
             .pipe(
                 take(1),
-                map((res: Products) => {
-                    if (!res || res.products.length === 0 || res.products.length < res.limit) {
+                map((res: Paginated) => {
+                    const items = (res[this.service.modelKey()] as Base[]);
+                    if (!res || items.length === 0 || items.length < res.limit) {
                         this.noMoreRowsToLoad = true;
                     }
 
                     if (resetTable) {
-                        this.dataSource.set(res.products);
+                        this.dataSource.set(items);
                     } else {
                         this.dataSource.update(rows => {
-                            return [...rows, ...res.products];
+                            return [...rows, ...items];
                         });
                     }
 

@@ -1,5 +1,5 @@
 import { Injectable, Signal, signal } from "@angular/core";
-import { environment } from "../environments/environment";
+import { environment } from "../../environments/environment";
 
 type AlertType = 'info' | 'success' | 'warning' | 'error';
 

@@ -5,8 +5,8 @@ import { Temporal } from '@js-temporal/polyfill';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { tap } from 'rxjs/internal/operators/tap';
-import { AuthR, User } from '../app/core/models/auth.models';
-import { environment } from '../environments/environment';
+import { AuthR, User } from '../core/models/auth.models';
+import { environment } from '../../environments/environment';
 import { ConfigService } from './config.service';
 import { TokenStorageService } from './token.storage.service';
 

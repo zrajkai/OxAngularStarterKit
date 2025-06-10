@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "HoloGraft-front": {
+        "OxStarterKit-front": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -83,10 +83,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "HoloGraft-front:build:production"
+                            "buildTarget": "OxStarterKit-front:build:production"
                         },
                         "development": {
-                            "buildTarget": "HoloGraft-front:build:development"
+                            "buildTarget": "OxStarterKit-front:build:development"
                         }
                     },
                     "defaultConfiguration": "development"

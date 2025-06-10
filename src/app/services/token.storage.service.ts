@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { User } from '../app/core/models/auth.models';
+import { User } from '../core/models/auth.models';
 import { ConfigService } from './config.service';
 import { LocalStorageService } from './local-storage.service';
 
@@ -25,7 +25,7 @@ export class TokenStorageService {
         if (!token) {
             return null;
         }
-        return JSON.parse(window.atob(token.split(TOKEN_SEP)[CLAIM_INDEX]));
+        return JSON.parse(window.atob(token.split(TOKEN_SEP)[CLAIM_INDEX]!));
     }
 
     saveAccessToken(token: string) {

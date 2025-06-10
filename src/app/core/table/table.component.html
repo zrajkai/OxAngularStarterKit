@@ -1,0 +1,36 @@
+<div #container class="h-[calc(100dvh-(230px))] overflow-y-hidden relative">
+
+    <div class=" overflow-auto h-full" (scroll)="onTableScroll($event)">
+        <table mat-table [dataSource]="dataSource()" matSort matSortActive="id" matSortDisableClear matSortDirection="desc">
+            @for(col of service.keys(); track $index) {
+                @if(col !== 'actions') {
+                    <ng-container [matColumnDef]="col" >
+                        <th mat-header-cell *matHeaderCellDef  mat-sort-header > {{ `${service.modelKey()}.col.${col}` | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{ element[col] }} </td>
+                    </ng-container>
+                } 
+                @else {
+                    <ng-container [matColumnDef]="'actions'" >
+                        <th mat-header-cell *matHeaderCellDef  mat-sort-header > {{ `table.col.actions` | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <mat-icon fontIcon="delete" class="" aria-hidden="false" aria-label="delete" (click)="onDelete(element)" />
+                        </td>
+                    </ng-container>
+                }
+            }
+            <tr mat-header-row *matHeaderRowDef="service.keys(); sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: service.keys();"></tr>
+        </table>
+        @if(!noMoreRowsToLoad) {
+        <div class="bg-gray-400 my-5 mb-10 animate-pulse h-14 flex items-center ps-3">
+            {{ 'table.newRowLoading' | translate }}
+        </div>
+        }
+    </div>
+    @if(!noMoreRowsToLoad) {
+        <div class="absolute bottom-2 right-5 animate-bounce">
+            <mat-icon fontIcon="arrow_circle_down" class="opacity-60 scale-200" aria-hidden="false"
+                aria-label="scroll-down" />
+        </div>
+    }
+</div>

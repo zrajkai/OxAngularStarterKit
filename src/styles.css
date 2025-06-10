@@ -12,6 +12,8 @@
     --color-red: #e63d0a;
 
     --animate-countdown: countdown 7s ease-in-out forwards;
+    --animate-slide: slide 1s ease-in-out forwards;
+
 
     @keyframes countdown {
         0% {
@@ -20,6 +22,12 @@
 
         100% {
             width: 0%;
+        }
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(100%);
         }
 
     }

@@ -1,6 +1,6 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
     selector: 'ox-header',
@@ -13,7 +13,7 @@ export class HeaderComponent {
 
     @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent): void {
-        if (event.key === 'q' && event.ctrlKey) {
+        if (event.key === 'k' && event.ctrlKey) {
             event.preventDefault();
             this.toggleModal();
         }

@@ -1,19 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductService } from '../../../services/product.service';
 import { CardComponent } from "../../components/card/card.component";
 import { PageHeaderComponent } from '../../components/page-header/page-header.component';
 import { Genders } from '../../shared/constants/gender.const';
+import { CrudService } from '@app/services/crud.service';
 
 @Component({
     selector: 'ox-feature-two',
     imports: [PageHeaderComponent, ReactiveFormsModule, CardComponent],
-    providers: [ProductService],
+    providers: [CrudService],
     templateUrl: './feature-two.component.html'
 })
 export class FeatureTwoComponent {
     fb = inject(FormBuilder);
-    taskService = inject(ProductService);
+    service = inject(CrudService);
 
     form = this.fb.group({
         customId: [''],
@@ -28,7 +28,7 @@ export class FeatureTwoComponent {
     genders = Genders;
 
     onSubmit() {
-        this.taskService.getProducts().subscribe((response) => {
+        this.service.getAll().subscribe((response) => {
             console.log(response);
         });
     }

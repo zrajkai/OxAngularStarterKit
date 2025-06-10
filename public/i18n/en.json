@@ -8,7 +8,20 @@
         "loginButton": "Get Started",
         "forgot": "Forgot Password?"
     },
-    "product": {
+    "table": {
+        "col": {
+            "actions": "Actions"
+        },
+        "newRowLoading": "New data is loading..."
+    },
+    "recipes": {
+        "col": {
+            "id": "ID",
+            "name": "Name",
+            "ingredients": "Ingredients"
+        }
+    },
+    "products": {
         "col": {
             "id": "ID",
             "title": "Title",

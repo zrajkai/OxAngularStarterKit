@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AlertService } from '../../../services/alert.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
     selector: 'ox-no-permission',

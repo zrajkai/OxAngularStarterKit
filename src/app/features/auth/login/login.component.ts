@@ -4,9 +4,9 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { take } from 'rxjs/internal/operators/take';
-import { AuthService } from '../../../../services/auth.service';
-import { AutoFocusDirective } from '../../../directives/auto-focus.directive';
-import { CustomInputComponent } from "../../../directives/field-input.directive";
+import { AuthService } from '@app/services/auth.service';
+import { AutoFocusDirective } from '@app/directives/auto-focus.directive';
+import { CustomInputComponent } from "@app/directives/field-input.directive";
 
 interface LoginForm {
     username: FormControl<string>;
@@ -34,7 +34,7 @@ export class LoginComponent {
         if (!errors) return ' ';
         const errorKeys = Object.keys(errors);
         if (errorKeys.length > 0) {
-            const errorKey = errorKeys[0];
+            const errorKey = errorKeys[0] ?? '';
             const errorValue = errors[errorKey];
             console.debug('errorKey', errorKey, 'errorValue', errorValue);
             return `error.ui.${errorKey}`;

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { MatIconModule } from '@angular/material/icon';
 import { timer, Subscription } from "rxjs";
-import { AlertService } from "../../../services/alert.service";
+import { AlertService } from "../../services/alert.service";
 
 @Component({
     selector: 'ox-alert',

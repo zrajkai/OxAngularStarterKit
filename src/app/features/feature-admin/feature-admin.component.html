@@ -1,3 +1,24 @@
 <ox-page-header [title]="'admin.title' | translate">
     <h3 ngProjectAs="header-actions">{{'admin.description' | translate }}</h3>
 </ox-page-header>
+
+<div class="flex gap-4">
+    <div
+        class="w-48 h-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        <a [routerLink]="['recipes']" routerLinkActive="active"
+                    class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+            Recipes
+        </a>
+        <a [routerLink]="['products']" routerLinkActive="active"
+                    class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+            Products
+        </a>
+        <a [routerLink]="['users']" routerLinkActive="active"
+                    class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+            Users
+        </a>
+    </div>
+    <ox-card class="w-full">
+        <router-outlet />
+    </ox-card>
+</div>
