@@ -5,6 +5,15 @@
         "password": "Jelszó",
         "loginButton": "Bejelentkezés"
     },
+    "admin": {
+        "recipe": {
+            "form": {
+                "name": "Megnevezés:",
+                "ingredients": "Hozzávalók:",
+                "instructions": "Elkészítés:"
+            }
+        }
+    },
     "error": {
         "ui": {
             "required": "Required",
