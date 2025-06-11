@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, Input, input, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { PanelComponent } from '@app/components/panel/panel.component';
 import { RecipeDTO } from '@app/core/models/recipe.models';
@@ -12,6 +12,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     styles: ``
 })
 export class RecipeFormComponent implements OnInit {
+    @Input() close?: () => void;
+
     fb = inject(FormBuilder)
     service = inject(CrudService);
 
@@ -32,7 +34,12 @@ export class RecipeFormComponent implements OnInit {
 
     onSubmit() {
         console.debug('Form submitted', this.form.value);
-
+        this.onClose();
     }
 
+    onClose() {
+        if (this.close) {
+            this.close();
+        }
+    }
 }

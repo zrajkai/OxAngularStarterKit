@@ -13,7 +13,7 @@
                     <ng-container [matColumnDef]="'actions'" >
                         <th mat-header-cell *matHeaderCellDef  mat-sort-header > {{ `table.col.actions` | translate}} </th>
                         <td mat-cell *matCellDef="let element"> 
-                            <mat-icon fontIcon="delete" class="" aria-hidden="false" aria-label="delete" (click)="onDelete(element)" />
+                            <mat-icon fontIcon="delete" class="cursor-pointer" aria-hidden="false" aria-label="delete" (click)="onDelete(element)" />
                         </td>
                     </ng-container>
                 }

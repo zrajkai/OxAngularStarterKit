@@ -53,5 +53,11 @@ export class CrudListComponent implements OnInit {
         this.dynamicComponentContainer.clear();
         const componentRef = this.dynamicComponentContainer.createComponent(RecipeFormComponent);
         componentRef.setInput('data', { ...row } as RecipeDTO);
+        componentRef.instance.close = () => this.closeDynamicComponent();
     }
+
+    private closeDynamicComponent() {
+        this.dynamicComponentContainer.clear();
+    }
+    
 }

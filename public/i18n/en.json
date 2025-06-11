@@ -18,7 +18,19 @@
         "col": {
             "id": "ID",
             "name": "Name",
-            "ingredients": "Ingredients"
+            "ingredients": "Ingredients",
+            "instructions": "Instructions",
+            "prepTimeMinutes": "Preparation Time (minute)",
+            "cookTimeMinutes": "Cooking Time (minute)"   ,
+            "userId"  : "User ID"
+        },
+        "form": {
+            "name": "Name",
+            "ingredients": "Ingredients",
+            "instructions": "Instructions",
+            "prepTimeMinutes": "Preparation Time (minutes)",
+            "cookTimeMinutes": "Cooking Time (minutes)",
+            "userId": "User ID"
         }
     },
     "products": {

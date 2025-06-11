@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -8,8 +8,9 @@ import { TranslatePipe } from '@ngx-translate/core';
     templateUrl: './panel.component.html'
 })
 export class PanelComponent {
-
-    closePanel() {
-        throw new Error('Method not implemented.');
+    closePanel = output();
+    
+    onClose() {
+        this.closePanel.emit();
     }
 }

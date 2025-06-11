@@ -1,50 +1,50 @@
-<ox-panel>
-    <form (ngSubmit)="onSubmit()" [formGroup]="form">
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="grid grid-cols-3 gap-3">
-                <div class="w-full">
-                    <div class="relative">
-                        <label for="name"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
-                        <input type="text" id="name" formControlName="name" class="" />
-                    </div>
-                    <div class="relative">
-                        <label for="ingredients"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ingredients</label>
-                        <input type="text" id="ingredients" formControlName="ingredients" class="" />
-                    </div>
-                    <div class="relative">
-                        <label for="instructions"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Instructions</label>
-                        <input type="text" id="instructions" formControlName="instructions" class="" />
-                    </div>
-                    <!-- <div class="relative">
-                        <label for="customId"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gender</label>
-                        <select>
-                            <option></option>
-                            @for(g of genders; track $index) {
-                            <option value="{{g}}">{{g}}</option>
-                            }
-                        </select>
-                    </div> -->
+<ox-panel (closePanel)="onClose()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="w-full flex flex-col justify-between p-2">
+        <div class="">
+            <div class="w-full">
+                <div class="relative">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{'recipes.form.name' | translate }}</label>
+                    <input type="text" id="name" formControlName="name" class="" />
                 </div>
-                <!-- <div class="w-full">
-                    <div class="relative">
-                        <label for="first_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date of
-                            Birth</label>
-                        <input type="date" id="dob" class="" />
-                    </div>
+                <div class="relative">
+                    <label for="ingredients"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ingredients</label>
+                    <input type="text" id="ingredients" formControlName="ingredients" class="" />
                 </div>
-                <div class="w-full">
-                    <div class="relative">
-                        <label for="note" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your
-                            note</label>
-                        <textarea id="note" name="note" class=""></textarea>
-                    </div>
+                <div class="relative">
+                    <label for="instructions"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Instructions</label>
+                    <input type="text" id="instructions" formControlName="instructions" class="" />
+                </div>
+                <!-- <div class="relative">
+                    <label for="customId"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gender</label>
+                    <select>
+                        <option></option>
+                        @for(g of genders; track $index) {
+                        <option value="{{g}}">{{g}}</option>
+                        }
+                    </select>
                 </div> -->
             </div>
+            <!-- <div class="w-full">
+                <div class="relative">
+                    <label for="first_name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date of
+                        Birth</label>
+                    <input type="date" id="dob" class="" />
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="relative">
+                    <label for="note" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your
+                        note</label>
+                    <textarea id="note" name="note" class=""></textarea>
+                </div>
+            </div> -->
+        </div>
+        <div class="w-full mt-4">
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Mentés</button>
         </div>
     </form>
 </ox-panel>
